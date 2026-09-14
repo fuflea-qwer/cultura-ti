@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cultura tehnologiilor informaționale - importanță, reguli, riscuri, sfaturi de protecție și rol în game design">
+    <title>Cultura Tehnologiilor Informaționale</title>
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2c3e50;
+            --accent: #3498db;
+            --accent-dark: #2980b9;
+            --light: #ecf0f1;
+            --text: #333;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            color: var(--text);
+            background-color: #f9f9f9;
+        }
+
+        /* ===== NAVBAR ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(44, 62, 80, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 1rem 1.5rem;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background: var(--accent);
+        }
+
+        /* ===== HERO ===== */
+        header {
+            background: var(--gradient);
+            color: white;
+            text-align: center;
+            padding: 9rem 2rem 5rem;
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        header p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* ===== SECTIONS ===== */
+        section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        section h2 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            border-left: 5px solid var(--accent);
+            padding-left: 1rem;
+        }
+
+        section p {
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin-bottom: 2.5rem;
+        }
+
+        /* ===== LISTS ===== */
+        ul.styled {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        ul.styled li {
+            padding: 0.8rem 1rem 0.8rem 2.5rem;
+            position: relative;
+            background: var(--light);
+            border-radius: 8px;
+            margin-bottom: 0.6rem;
+        }
+
+        ul.styled li::before {
+            content: "✔";
+            position: absolute;
+            left: 0.9rem;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* ===== GAME DESIGN GRID ===== */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .grid-item {
+            background: var(--light);
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .grid-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+
+        .grid-item h3 {
+            color: var(--accent-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .icon {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* ===== REGULI & RISCURI ===== */
+        .rule-box {
+            border-left: 4px solid #27ae60;
+            background: #f0faf4;
+            border-radius: 0 10px 10px 0;
+            padding: 1.2rem 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .rule-box h3 {
+            color: #1e8449;
+            margin-bottom: 0.3rem;
+        }
+
+        .risk-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .risk-item {
+            background: #fdecea;
+            border-radius: 10px;
+            padding: 1.5rem;
+            border-top: 4px solid #e74c3c;
+            transition: transform 0.3s;
+        }
+
+        .risk-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .risk-item h3 {
+            color: #c0392b;
+            margin-bottom: 0.5rem;
+        }
+
+        .warn-banner {
+            background: #fff3cd;
+            border-left: 5px solid #f39c12;
+            padding: 1.2rem 1.5rem;
+            border-radius: 0 10px 10px 0;
+            margin-top: 2rem;
+        }
+
+        /* ===== SFATURI PENTRU INCEPATORI ===== */
+        .tip-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .tip-card {
+            background: white;
+            border: 1px solid #e0e6ed;
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .tip-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .tip-card .tip-icon {
+            font-size: 2.2rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .tip-card h3 {
+            color: var(--accent-dark);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .tip-card p {
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+
+        .security-checklist {
+            background: #eaf4fd;
+            border-left: 5px solid var(--accent);
+            border-radius: 0 10px 10px 0;
+            padding: 1.5rem 2rem;
+            margin-top: 2.5rem;
+        }
+
+        .security-checklist h3 {
+            color: var(--accent-dark);
+            margin-bottom: 1rem;
+        }
+
+        .security-checklist ul {
+            list-style: none;
+        }
+
+        .security-checklist li {
+            padding: 0.4rem 0 0.4rem 2rem;
+            position: relative;
+        }
+
+        .security-checklist li::before {
+            content: "☑";
+            position: absolute;
+            left: 0;
+            color: var(--accent-dark);
+            font-weight: bold;
+        }
+
+        .creator-tip {
+            background: #f3e8fd;
+            border-left: 5px solid #8e44ad;
+            border-radius: 0 10px 10px 0;
+            padding: 1.5rem 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .creator-tip h3 {
+            color: #6c3483;
+            margin-bottom: 0.5rem;
+        }
+
+        /* ===== CONCLUSION ===== */
+        .conclusion {
+            background: var(--gradient);
+            color: white;
+            border-radius: 12px;
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .conclusion h2 {
+            color: white;
+            border: none;
+            padding: 0;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        footer a {
+            color: var(--accent);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.8rem; }
+            header { padding: 7rem 1rem 3rem; }
+            section { padding: 3rem 1rem; }
+            nav a { padding: 0.8rem 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGARE -->
+    <nav>
+        <ul>
+            <li><a href="#despre">Despre</a></li>
+            <li><a href="#importanta">Importanță</a></li>
+            <li><a href="#reguli">Reguli & Riscuri</a></li>
+            <li><a href="#sfaturi">Sfaturi</a></li>
+            <li><a href="#gamedesign">Game Design</a></li>
+            <li><a href="#concluzie">Concluzie</a></li>
+        </ul>
+    </nav>
+
+    <!-- HEADER -->
+    <header>
+        <h1>💻 Cultura Tehnologiilor Informaționale</h1>
+        <p>Explorarea impactului tehnologiilor informaționale asupra societății moderne și a industriei de game design</p>
+    </header>
+
+    <!-- SECȚIUNEA 1: CE ESTE -->
+    <section id="despre">
+        <div class="card">
+            <h2>Ce este cultura tehnologiilor informaționale?</h2>
+            <p>
+                <strong>Cultura tehnologiilor informaționale</strong> reprezintă totalitatea cunoștințelor,
+                abilităților, valorilor și practicilor legate de utilizarea eficientă și responsabilă a
+                tehnologiilor informaționale (IT) în viața de zi cu zi. Aceasta include capacitatea de a
+                căuta, procesa, evalua și transmite informația cu ajutorul calculatoarelor, internetului
+                și al altor dispozitive digitale.
+            </p>
+            <p>
+                În societatea contemporană, cunoscută și sub denumirea de <em>societate informațională</em>,
+                această cultură a devenit la fel de importantă ca și cultura generală clasică. Ea formează
+                așa-numita <strong>competență digitală</strong> — una dintre competențele-cheie ale
+                secolului XXI.
+            </p>
+        </div>
+    </section>
+
+    <!-- SECȚIUNEA 2: DE CE ESTE IMPORTANTĂ -->
+    <section id="importanta">
+        <div class="card">
+            <h2>De ce este importantă?</h2>
+            <p>
+                Cultura tehnologiilor informaționale influențează aproape toate sferele vieții moderne:
+            </p>
+            <ul class="styled">
+                <li><strong>Educație</strong> — acces la platforme de învățare online, resurse digitale și instrumente interactive;</li>
+                <li><strong>Muncă</strong> — majoritatea profesiilor moderne cer abilități digitale de bază;</li>
+                <li><strong>Comunicare</strong> — internetul a schimbat radical modul în care interacționăm;</li>
+                <li><strong>Gândire critică</strong> — capacitatea de a distinge informația reală de dezinformare;</li>
+                <li><strong>Securitate</strong> — protejarea datelor personale și navigarea sigură online.</li>
+            </ul>
+            <p>
+                Fără o cultură digitală solidă, o persoană riscă să fie exclusă din viața socială,
+                profesională și educațională modernă. De aceea, formarea acestei culturi începe de la
+                vârste fragede și continuă pe tot parcursul vieții.
+            </p>
+        </div>
+    </section>
+
+    <!-- SECȚIUNEA 3: REGULI & RISCURI -->
+    <section id="reguli">
+        <div class="card">
+            <h2>⚖️ Regulile culturii tehnologiilor informaționale</h2>
+            <p>
+                Cultura tehnologiilor informaționale nu înseamnă doar abilități tehnice, ci și respectarea
+                unui set de reguli și norme de comportament în mediul digital (așa-numita
+                <strong>etică digitală</strong> sau <strong>netichetă</strong>). Iată câteva dintre cele mai
+                importante reguli:
+            </p>
+
+            <div class="rule-box">
+                <h3>🔒 Protejează-ți datele personale</h3>
+                <p>Nu dezvălui parole, adrese, numere de telefon sau date bancare unor persoane sau site-uri necunoscute.</p>
+            </div>
+
+            <div class="rule-box">
+                <h3>📜 Respectă drepturile de autor</h3>
+                <p>Nu copia și nu distribui conținut (imagini, muzică, software, cod) fără permisiune sau licență corespunzătoare.</p>
+            </div>
+
+            <div class="rule-box">
+                <h3>🤝 Comportă-te civilizat online</h3>
+                <p>Nu folosi limbaj agresiv, nu hărțui și nu umili alți utilizatori — tratându-i online așa cum ai face-o în viața reală.</p>
+            </div>
+
+            <div class="rule-box">
+                <h3>✅ Verifică sursa informației</h3>
+                <p>Înainte de a crede sau distribui o informație, verifică dacă provine dintr-o sursă sigură și credibilă.</p>
+            </div>
+
+            <div class="rule-box">
+                <h3>🛡️ Folosește software licențiat și antivirus</h3>
+                <p>Nu instala programe piratate și menține sistemele actualizate pentru a evita malware-ul.</p>
+            </div>
+
+            <div class="rule-box">
+                <h3>⏰ Gestionează-ți timpul în fața ecranului</h3>
+                <p>Menține un echilibru sănătos între activitățile digitale și viața reală.</p>
+            </div>
+
+            <!-- RISCURI -->
+            <h2 style="margin-top: 3rem;">⚠️ Riscurile necunoașterii acestor reguli</h2>
+            <p>
+                Ignorarea regulilor culturii digitale poate avea consecințe grave, atât pentru individ,
+                cât și pentru societate:
+            </p>
+
+            <div class="risk-grid">
+                <div class="risk-item">
+                    <h3>💳 Fraude și furt de identitate</h3>
+                    <p>Necunoscând regulile de protecție a datelor, poți deveni victimă a furtului de identitate, a înșelăciunilor online (phishing) sau a accesării conturilor bancare.</p>
+                </div>
+                <div class="risk-item">
+                    <h3>🦠 Infectarea cu malware</h3>
+                    <p>Descărcarea de software piratat sau click-uri pe link-uri suspecte pot duce la pierderea datelor, blocarea sistemului sau spionaj informatic.</p>
+                </div>
+                <div class="risk-item">
+                    <h3>📰 Dezinformare și manipulare</h3>
+                    <p>Fără gândire critică, persoana devine vulnerabilă la știri false, teorii conspiraționiste și propagandă, contribuind la răspândirea lor.</p>
+                </div>
+                <div class="risk-item">
+                    <h3>😢 Cyberbullying</h3>
+                    <p>Comportamentul agresiv online — fie ca victimă, fie ca agresor — poate provoca traume psihologice grave, în special în rândul tinerilor.</p>
+                </div>
+                <div class="risk-item">
+                    <h3>⚖️ Răspundere legală</h3>
+                    <p>Încălcarea drepturilor de autor, distribuirea ilegală de conținut sau infracțiunile informatice pot duce la amenzi și chiar la răspundere penală.</p>
+                </div>
+                <div class="risk-item">
+                    <h3>📉 Excludere digitală</h3>
+                    <p>Absența competențelor digitale de bază limitează accesul la educație, locuri de muncă și servicii publice modernizate.</p>
+                </div>
+            </div>
+
+            <div class="warn-banner">
+                <strong>💡 Concluzie parțială:</strong> Cunoașterea și respectarea regulilor culturii
+                tehnologiilor informaționale este prima linie de apărare împotriva majorității pericolelor
+                din mediul digital. Educația digitală nu este opțională — este o formă de auto-protecție.
+            </div>
+        </div>
+    </section>
+
+    <!-- SECȚIUNEA 4: SFATURI PENTRU INCEPATORI -->
+    <section id="sfaturi">
+        <div class="card">
+            <h2>💡 Sfaturi pentru utilizatorii noi de internet</h2>
+            <p>
+                Dacă abia începi să navighezi pe internet sau îți dorești să creezi conținut online,
+                aceste sfaturi te vor ajuta să te protejezi pe tine și pe cei dragi:
+            </p>
+
+            <div class="tip-grid">
+                <div class="tip-card">
+                    <span class="tip-icon">🔑</span>
+                    <h3>Folosește parole puternice</h3>
+                    <p>Creează parole de minim 12 caractere, cu litere mari și mici, cifre și simboluri. Nu folosi aceeași parolă pentru mai multe conturi.</p>
+                </div>
+                <div class="tip-card">
+                    <span class="tip-icon">📲</span>
+                    <h3>Activează autentificarea în doi pași</h3>
+                    <p>Autentificarea în doi pași (2FA) adaugă un nivel suplimentar de securitate — chiar dacă parola este furată, contul rămâne protejat.</p>
+                </div>
+                <div class="tip-card">
+                    <span class="tip-icon">🎣</span>
+                    <h3>Fii atent la phishing</h3>
+                    <p>Nu da click pe link-uri din e-mailuri sau mesaje suspecte. Verifică întotdeauna adresa reală a site-ului înainte de a introduce date.</p>
+                </div>
+                <div class="tip-card">
+                    <span class="tip-icon">📶</span>
+                    <h3>Evită rețelele Wi-Fi publice</h3>
+                    <p>Nu introduce parole sau date bancare în rețele Wi-Fi publice (cafenele, aeroporturi) — ele pot fi interceptate cu ușurință.</p>
+                </div>
+                <div class="tip-card">
+                    <span class="tip-icon">💾</span>
+                    <h3>Fă copii de rezervă</h3>
+                    <p>Salvează periodic fișierele importante pe un stick USB, hard disk extern sau în cloud. Regula 3-2-1: 3 copii, pe 2 medii, 1 în afara casei.</p>
+                </div>
+                <div class="tip-card">
+                    <span class="tip-icon">🔄</span>
+                    <h3>Actualizează-ți dispozitivele</h3>
+                    <p>Actualizările de sistem și de browser corectează vulnerabilități de securitate. Nu le amâna!</p>
+                </div>
+                <div class="tip-card">
+                    <span class="tip-icon">👁️</span>
+                    <h3>Gândește înainte de a posta</h3>
+                    <p>Orice publici pe internet rămâne acolo pentru totdeauna. Nu posta informații care te pot compromite mai târziu.</p>
+                </div>
+                <div class="tip-card">
+                    <span class="tip-icon">🔍</span>
+                    <h3>Verifică setările de confidențialitate</h3>
+                    <p>Revizuiește periodic setările conturilor de rețele sociale — limitează cine îți vede postările și informațiile personale.</p>
+                </div>
+            </div>
+
+            <!-- CHECKLIST DE SECURITATE -->
+            <div class="security-checklist">
+                <h3>🛡️ Checklist de securitate — primii pași siguri pe internet</h3>
+                <ul>
+                    <li>Instalez un antivirus activ și actualizat;</li>
+                    <li>Am setat parole unice și puternice pentru fiecare cont;</li>
+                    <li>Am activat autentificarea în doi pași (2FA) unde este posibil;</li>
+                    <li>Am verificat setările de confidențialitate ale rețelelor sociale;</li>
+                    <li>Știu să recunosc un e-mail de tip phishing (expeditor necunoscut, urgență falsă, greșeli de scriere);</li>
+                    <li>Nu îmi dezvălui niciodată parola — nicio firmă serioasă nu o cere;</li>
+                    <li>Am făcut o copie de rezervă a fișierelor importante.</li>
+                </ul>
+            </div>
+
+            <!-- PENTRU CREATORI DE CONȚINUT -->
+            <div class="creator-tip">
+                <h3>🎨 Sfat special pentru cei care vor să CREEZE pe internet</h3>
+                <p>
+                    Dacă vrei să publici site-uri, aplicații sau proiecte (de exemplu pe
+                    <strong>GitHub</strong>): nu include niciodată parole sau chei de acces direct în
+                    codul publicat; folosește licențe open-source corecte pentru proiectele tale și
+                    respectă licențele celorlalți; citește termenii de utilizare ai platformelor înainte
+                    de a publica; și folosește adrese de e-mail separate — una personală, una pentru
+                    înregistrări online.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECȚIUNEA 5: ROLUL ÎN GAME DESIGN -->
+    <section id="gamedesign">
+        <div class="card">
+            <h2>Rolul în domeniul Game Design</h2>
+            <p>
+                <strong>Game designul</strong> este unul dintre cele mai expresive domenii în care cultura
+                tehnologiilor informaționale se manifestă. Crearea unui joc video modern combină
+                programarea, arta digitală, psihologia și designul sonor — toate fiind posibile datorită
+                tehnologiilor informaționale.
+            </p>
+            <div class="grid">
+                <div class="grid-item">
+                    <span class="icon">🎮</span>
+                    <h3>Motorare de joc</h3>
+                    <p>Engine-uri precum Unity și Unreal Engine permit crearea de lumi virtuale complexe fără a construi totul de la zero.</p>
+                </div>
+                <div class="grid-item">
+                    <span class="icon">👨‍💻</span>
+                    <h3>Programare</h3>
+                    <p>Limbaje precum C#, C++ și Python formează baza logică a oricărui joc interactiv.</p>
+                </div>
+                <div class="grid-item">
+                    <span class="icon">🎨</span>
+                    <h3>Artă digitală</h3>
+                    <p>Grafica 2D/3D, animația și efectele vizuale creează experiența vizuală a jocului.</p>
+                </div>
+                <div class="grid-item">
+                    <span class="icon">🧠</span>
+                    <h3>Design de gameplay</h3>
+                    <p>IT-ul ajută la simularea și testarea mecanicilor de joc, a dificultății și a echilibrului.</p>
+                </div>
+            </div>
+            <p style="margin-top: 1.5rem;">
+                Totodată, jocurile educative devin un instrument puternic de formare a culturii digitale:
+                ele dezvoltă gândirea logică, rezolvarea problemelor și creativitatea. Industria gaming,
+                care depășește ca valoare industria filmului și a muzicii la un loc, demonstrează cât de
+                departe poate ajunge o combinație între tehnologie și creativitate.
+            </p>
+        </div>
+    </section>
+
+    <!-- SECȚIUNEA 6: CONCLUZIE -->
+    <section id="concluzie">
+        <div class="conclusion">
+            <h2>📌 Concluzie</h2>
+            <p>
+                Cultura tehnologiilor informaționale nu mai este un lux, ci o necesitate a vieții moderne.
+                Ea deschide uși spre educație de calitate, cariere de succes și participare activă în
+                societatea digitală. Domeniul game design demonstrează perfect cum tehnologia, stăpânită
+                la nivel cultural profund, poate transforma imaginația în realitate interactivă.
+            </p>
+            <p>
+                <strong>Investind în cultura digitală, investim în viitorul nostru.</strong>
+            </p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2025 Cultura Tehnologiilor Informaționale | Publicat pe
+            <a href="https://pages.github.com" target="_blank" rel="noopener">GitHub Pages</a>
+        </p>
+    </footer>
+
+</body>
+</html>
