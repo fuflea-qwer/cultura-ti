@@ -1,1 +1,1 @@
-##### fuflea-qwer/-cultura-tehnologiilor-informationale.
+##### https://fuflea-qwer.github.io/cultura-ti/
