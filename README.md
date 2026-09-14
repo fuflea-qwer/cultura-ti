@@ -1,1 +1,1 @@
-# cultura-ti
+##### fuflea-qwer/-cultura-tehnologiilor-informationale.
